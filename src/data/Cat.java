@@ -17,9 +17,21 @@ public class Cat implements FelineInterface {
 		setYear(year);
 			
 	}
+//	public Cat(Cat cat) {
+//		this(cat.getId(), cat.getName(), cat.getRace(), cat.getYear());
+//	}
 	public String toString() {
 		return "ID: " + id + ", Cat's name: " + name + ", Cat's race: " + race + ", Cat's age: " + year;
 	}
+	public Cat clone(Cat cat) {
+		Cat catClone = null;
+		try {
+			catClone = (Cat) cat.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		return catClone;
+	}	
 	@Override
 	public void setId(Integer id) {
 		for(;;) {

@@ -41,14 +41,16 @@ public class FelineRepository implements FelineRepositoryInterface {
 	
 	@Override
 	public FelineInterface findById(Integer id){
-		FelineInterface fTmp = null;
+		//FelineInterface fTmp = null;
 		for(FelineInterface f : felines) {
 			if(f.getId().equals(id))
-				fTmp = f;
+				return f;
+				//fTmp = f;
 		}
 		//if(fTmp == null)
 			//System.out.println("The object with ID " + id + " not found!");
-		return fTmp;
+		//return fTmp;
+		return null;
 	}
 	
 	//FOR TEST

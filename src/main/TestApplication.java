@@ -1,5 +1,6 @@
 package main;
 
+import data.Cat;
 import data.FelineInterface;
 import persistance.FelineRepository;
 import persistance.FelineRepositoryInterface;
@@ -67,5 +68,23 @@ public class TestApplication {
 			System.out.println(f);
 		}
 		System.out.println();
+		
+		FelineInterface catTest1 = fr.findById(9);
+		System.out.println(fr.findById(9));
+		System.out.println(catTest1);
+		
+		catTest1.setName("Vasilisa");
+		System.out.println(fr.findById(9));
+		System.out.println(catTest1);
+		
+		FelineInterface catTest2 = null;
+		((Cat)catTest2).clone((Cat)fr.findById(9));
+		System.out.println(fr.findById(9));
+		System.out.println(catTest1);
+		
+		catTest2.setName("Vasilisa");
+		System.out.println(fr.findById(9));
+		System.out.println(catTest2);
+		
 	}
 }
