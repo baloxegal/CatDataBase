@@ -2,7 +2,7 @@ package data;
 
 import java.util.Scanner;
 
-public class Cat implements FelineInterface {
+public class Cat implements FelineInterface, Cloneable {
 	
 	private Integer id;
 	private String name;
