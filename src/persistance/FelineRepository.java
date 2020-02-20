@@ -51,7 +51,11 @@ public class FelineRepository implements FelineRepositoryInterface {
 	public FelineInterface findById(Integer id){
 		for(FelineInterface f : felines) {
 			if(f.getId().equals(id))
-				return f;
+				try {
+					return ((Cat)f).clone();
+				} catch (CloneNotSupportedException e) {
+					e.printStackTrace();
+				}
 		}
 		return null;
 	}
