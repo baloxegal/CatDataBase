@@ -23,15 +23,10 @@ public class Cat implements FelineInterface, Cloneable {
 	public String toString() {
 		return "ID: " + id + ", Cat's name: " + name + ", Cat's race: " + race + ", Cat's age: " + year;
 	}
-	public Cat clone(Cat cat) {
-		Cat catClone = null;
-		try {
-			catClone = (Cat) cat.clone();
-		} catch (CloneNotSupportedException e) {
-			e.printStackTrace();
-		}
-		return catClone;
-	}	
+	@Override
+	public Cat clone() throws CloneNotSupportedException {
+		return (Cat) super.clone();
+	}
 	@Override
 	public void setId(Integer id) {
 		for(;;) {

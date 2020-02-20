@@ -25,15 +25,6 @@ public class TestApplication {
 		}
 		System.out.println();
 		
-//		FelineInterface cat1 = fr.findById(110);
-//		if(cat1 != null) {
-//			cat1.setName("New Name - Joric");
-//			for(FelineInterface f : fr.findAll()){
-//				System.out.println(f);
-//			}
-//		}
-//		System.out.println();
-		
 		//System.out.println(((FelineRepository)fr).findByName("Arnold"));
 		
 		((FelineRepository)fr).findByName("Arnold").forEach(f -> System.out.println(f));
@@ -41,7 +32,7 @@ public class TestApplication {
 //		for(FelineInterface f : ((FelineRepository)fr).findByName("Arnold")) {
 //			System.out.println(f);
 //		}
-		
+
 		System.out.println();
 		for(FelineInterface f : ((FelineRepository)fr).findByName("Mahmud")) {
 			System.out.println(f);
@@ -72,19 +63,36 @@ public class TestApplication {
 		FelineInterface catTest1 = fr.findById(9);
 		System.out.println(fr.findById(9));
 		System.out.println(catTest1);
+		System.out.println();
 		
 		catTest1.setName("Vasilisa");
 		System.out.println(fr.findById(9));
 		System.out.println(catTest1);
+		System.out.println();
 		
-		FelineInterface catTest2 = null;
-		((Cat)catTest2).clone((Cat)fr.findById(9));
+		Cat catTest2 = null;
+		try {
+			catTest2 = ((Cat) catTest1).clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		
 		System.out.println(fr.findById(9));
 		System.out.println(catTest1);
-		
-		catTest2.setName("Vasilisa");
-		System.out.println(fr.findById(9));
 		System.out.println(catTest2);
+		System.out.println();
+		
+		catTest2.setName("Maricica");
+		System.out.println(fr.findById(9));
+		System.out.println(catTest1);
+		System.out.println(catTest2);
+		System.out.println();
+		
+		catTest1.setRace("Japan");
+		System.out.println(fr.findById(9));
+		System.out.println(catTest1);
+		System.out.println(catTest2);
+		System.out.println();
 		
 	}
 }

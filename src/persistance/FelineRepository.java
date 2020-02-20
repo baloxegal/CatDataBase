@@ -36,20 +36,23 @@ public class FelineRepository implements FelineRepositoryInterface {
 
 	@Override
 	public List<FelineInterface> findAll() {
-		return felines;
+		List<FelineInterface> felinesClon = new ArrayList<FelineInterface>();
+		for(FelineInterface f : felines) {
+			try {
+				felinesClon.add(((Cat) f).clone());
+			} catch (CloneNotSupportedException e) {
+				e.printStackTrace();
+			}
+		}
+		return felinesClon;
 	}
 	
 	@Override
 	public FelineInterface findById(Integer id){
-		//FelineInterface fTmp = null;
 		for(FelineInterface f : felines) {
 			if(f.getId().equals(id))
 				return f;
-				//fTmp = f;
 		}
-		//if(fTmp == null)
-			//System.out.println("The object with ID " + id + " not found!");
-		//return fTmp;
 		return null;
 	}
 	
@@ -73,28 +76,25 @@ public class FelineRepository implements FelineRepositoryInterface {
 	
 	@Override
 	public List<FelineInterface> findByName(String name){
-		List<FelineInterface> felinesTmp = new ArrayList<FelineInterface>();
-		//felines.forEach(f -> {if(f.getName() == name) felineTmp.add(f);});
-		felines.forEach(f -> {if(f.getName().equals(name)) felinesTmp.add(f);});
-//		if(felinesTmp.size() != 0) {
-//			return felinesTmp;
-//		}
-//		return null;
-		
-		return felinesTmp;
+		List<FelineInterface> felinesTmpClone = new ArrayList<FelineInterface>();
+		felines.forEach(f -> {if(f.getName().equals(name))
+			try {
+				felinesTmpClone.add(((Cat)f).clone());
+			} catch (CloneNotSupportedException e) {
+				e.printStackTrace();
+			}});
+		return felinesTmpClone;
 	}
 	
 	@Override
 	public List<FelineInterface> findByRace(String race){
-		List<FelineInterface> felinesTmp = new ArrayList<FelineInterface>();
-		//felines.forEach(f -> {if(f.getRace() == race) felineTmp.add(f);});
-		felines.forEach(f -> {if(f.getRace().equals(race)) felinesTmp.add(f);});
-//		if(felinesTmp.size() != 0) {
-//		return felinesTmp;
-//	}
-//	return null;
-	
-		return felinesTmp;
+		List<FelineInterface> felinesTmpClone = new ArrayList<FelineInterface>();
+		felines.forEach(f -> {if(f.getRace().equals(race))
+			try {
+				felinesTmpClone.add(((Cat)f).clone());
+			} catch (CloneNotSupportedException e) {
+				e.printStackTrace();
+			}});
+		return felinesTmpClone;
 	}
-
 }
