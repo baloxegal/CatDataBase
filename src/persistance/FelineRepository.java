@@ -30,10 +30,22 @@ public class FelineRepository implements FelineRepositoryInterface {
 
 	@Override
 	public boolean update(FelineInterface feline) {
-		
+//		if(this.findById(feline.getId()) != null && !this.findById(feline.getId()).equals(feline)) {
+//			
+//			return true;
+//		}
+//		return false;
+				
+//		felines.forEach(f -> {if(f.getId().equals(feline.getId()) && !f.equals(feline)) felines.set(felines.indexOf(f), feline); return;}); 
+	
+		for(FelineInterface f : felines) {
+			if(f.getId().equals(feline.getId()) && !f.equals(feline)) {
+				felines.set(felines.indexOf(f), feline);
+				return true;
+			}
+		}
 		return false;
-	}
-
+	}	
 	@Override
 	public List<FelineInterface> findAll() {
 		List<FelineInterface> felinesClon = new ArrayList<FelineInterface>();

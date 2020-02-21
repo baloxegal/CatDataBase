@@ -94,5 +94,20 @@ public class TestApplication {
 		System.out.println(catTest2);
 		System.out.println();
 		
+		System.out.println(fr.findById(4));
+		FelineInterface catTest3 = fr.findById(4);
+		System.out.println(fr.findById(4));
+		System.out.println(catTest3);
+		System.out.println();
+		
+		catTest3.setName("Bambula");
+		System.out.println(fr.findById(4));
+		System.out.println(catTest3);
+		System.out.println();
+		
+		fr.update(catTest3);
+		System.out.println(fr.findById(4));
+		System.out.println(catTest3);
+		System.out.println();
 	}
 }
