@@ -24,8 +24,8 @@ public class Cat implements FelineInterface, Cloneable {
 		return "ID: " + id + ", Cat's name: " + name + ", Cat's race: " + race + ", Cat's age: " + year;
 	}
 	@Override
-	public Cat clone() throws CloneNotSupportedException {
-		return (Cat) super.clone();
+	public FelineInterface clone() throws CloneNotSupportedException {
+		return (FelineInterface) super.clone();
 	}
 	@Override
 	public void setId(Integer id) {

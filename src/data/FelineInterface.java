@@ -11,4 +11,5 @@ public interface FelineInterface {
 	public void setYear(int year);
 	public int getYear();
 	
+	public FelineInterface clone() throws CloneNotSupportedException;
 }

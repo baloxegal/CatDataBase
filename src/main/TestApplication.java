@@ -1,6 +1,8 @@
 package main;
 
-import data.Cat;
+import java.util.ArrayList;
+import java.util.List;
+
 import data.FelineInterface;
 import persistance.FelineRepository;
 import persistance.FelineRepositoryInterface;
@@ -70,9 +72,9 @@ public class TestApplication {
 		System.out.println(catTest1);
 		System.out.println();
 		
-		Cat catTest2 = null;
+		FelineInterface catTest2 = null;
 		try {
-			catTest2 = ((Cat) catTest1).clone();
+			catTest2 = ((FelineInterface)catTest1).clone();
 		} catch (CloneNotSupportedException e) {
 			e.printStackTrace();
 		}
@@ -108,6 +110,28 @@ public class TestApplication {
 		fr.update(catTest3);
 		System.out.println(fr.findById(4));
 		System.out.println(catTest3);
+		System.out.println();
+		
+		for(FelineInterface f : fr.findByName("Arnold")){
+			System.out.println(f);
+		}
+		System.out.println();
+		List<FelineInterface> clonedName = new ArrayList<FelineInterface>();
+		clonedName = fr.findByName("Arnold");
+		for(FelineInterface f : clonedName){
+			System.out.println(f);
+		}
+		System.out.println();
+		
+		for(FelineInterface f : fr.findByRace("Arabian")){
+			System.out.println(f);
+		}
+		System.out.println();
+		List<FelineInterface> clonedRace = new ArrayList<FelineInterface>();
+		clonedRace = fr.findByRace("Arabian");
+		for(FelineInterface f : clonedRace){
+			System.out.println(f);
+		}
 		System.out.println();
 	}
 }

@@ -18,14 +18,15 @@ public class FelineRepository implements FelineRepositoryInterface {
 
 	@Override
 	public boolean save(FelineInterface feline) {
-		
-		return false;
+		if(!update(feline))
+			felines.add(feline);
+		return true;
 	}
 
 	@Override
 	public boolean delete(FelineInterface feline) {
-		
-		return false;
+		felines.forEach(f -> {if(f.getId().equals(feline.getId())) felines.remove(f);});
+		return true;
 	}
 
 	@Override
@@ -51,7 +52,7 @@ public class FelineRepository implements FelineRepositoryInterface {
 		List<FelineInterface> felinesClon = new ArrayList<FelineInterface>();
 		for(FelineInterface f : felines) {
 			try {
-				felinesClon.add(((Cat) f).clone());
+				felinesClon.add(((FelineInterface) f).clone());
 			} catch (CloneNotSupportedException e) {
 				e.printStackTrace();
 			}
@@ -64,7 +65,7 @@ public class FelineRepository implements FelineRepositoryInterface {
 		for(FelineInterface f : felines) {
 			if(f.getId().equals(id))
 				try {
-					return ((Cat)f).clone();
+					return ((FelineInterface)f).clone();
 				} catch (CloneNotSupportedException e) {
 					e.printStackTrace();
 				}
@@ -95,7 +96,7 @@ public class FelineRepository implements FelineRepositoryInterface {
 		List<FelineInterface> felinesTmpClone = new ArrayList<FelineInterface>();
 		felines.forEach(f -> {if(f.getName().equals(name))
 			try {
-				felinesTmpClone.add(((Cat)f).clone());
+				felinesTmpClone.add(((FelineInterface)f).clone());
 			} catch (CloneNotSupportedException e) {
 				e.printStackTrace();
 			}});
@@ -107,7 +108,7 @@ public class FelineRepository implements FelineRepositoryInterface {
 		List<FelineInterface> felinesTmpClone = new ArrayList<FelineInterface>();
 		felines.forEach(f -> {if(f.getRace().equals(race))
 			try {
-				felinesTmpClone.add(((Cat)f).clone());
+				felinesTmpClone.add(((FelineInterface)f).clone());
 			} catch (CloneNotSupportedException e) {
 				e.printStackTrace();
 			}});
