@@ -2,6 +2,7 @@ package persistance;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import data.Cat;
 import data.FelineInterface;
@@ -48,28 +49,55 @@ public class FelineRepository implements FelineRepositoryInterface {
 		return false;
 	}	
 	@Override
-	public List<FelineInterface> findAll() {
-		List<FelineInterface> felinesClon = new ArrayList<FelineInterface>();
-		for(FelineInterface f : felines) {
-			try {
-				felinesClon.add(((FelineInterface) f).clone());
-			} catch (CloneNotSupportedException e) {
-				e.printStackTrace();
-			}
-		}
+	public List<FelineInterface> findAll() throws CloneNotSupportedException {
+//		List<FelineInterface> felinesClon = new ArrayList<FelineInterface>();
+//		for(FelineInterface f : felines) {
+//			try {
+//				felinesClon.add(((FelineInterface) f).clone());
+//			} catch (CloneNotSupportedException e) {
+//				e.printStackTrace();
+//			}
+//		}
+		List<FelineInterface> felinesClon = felines.stream().
+											map(f -> {
+												try {
+													return f.clone();
+												} catch (CloneNotSupportedException e) {
+													// TODO Auto-generated catch block
+													e.printStackTrace();
+												}
+												return null;
+											}).
+											collect(Collectors.toList());
+		
 		return felinesClon;
 	}
 	
 	@Override
 	public FelineInterface findById(Integer id){
-		for(FelineInterface f : felines) {
-			if(f.getId().equals(id))
-				try {
-					return ((FelineInterface)f).clone();
-				} catch (CloneNotSupportedException e) {
-					e.printStackTrace();
-				}
-		}
+//		for(FelineInterface f : felines) {
+//			if(f.getId().equals(id))
+//				try {
+//					return ((FelineInterface)f).clone();
+//				} catch (CloneNotSupportedException e) {
+//					e.printStackTrace();
+//				}
+//		}
+//		return null;
+		
+		felines.stream().
+				filter(f -> f.getId().equals(id)).
+			  	map(f -> {
+			  		try {
+			  			return f.clone();
+			  		} catch (CloneNotSupportedException e) {
+			  			// TODO Auto-generated catch block
+			  			e.printStackTrace();
+			  		}
+			   	   	return null;
+			  	}).
+			  	collect(Collectors.toList());
+
 		return null;
 	}
 	
@@ -93,25 +121,54 @@ public class FelineRepository implements FelineRepositoryInterface {
 	
 	@Override
 	public List<FelineInterface> findByName(String name){
-		List<FelineInterface> felinesTmpClone = new ArrayList<FelineInterface>();
-		felines.forEach(f -> {if(f.getName().equals(name))
-			try {
-				felinesTmpClone.add(((FelineInterface)f).clone());
-			} catch (CloneNotSupportedException e) {
-				e.printStackTrace();
-			}});
+//		List<FelineInterface> felinesTmpClone = new ArrayList<FelineInterface>();
+//		felines.forEach(f -> {if(f.getName().equals(name))
+//			try {
+//				felinesTmpClone.add(((FelineInterface)f).clone());
+//			} catch (CloneNotSupportedException e) {
+//				e.printStackTrace();
+//			}});
+		
+		List<FelineInterface> felinesTmpClone = felines.stream().
+											  	filter(f -> f.getName().equals(name)).
+											  	map(f -> {
+											  		try {
+											  			return f.clone();
+											  		} catch (CloneNotSupportedException e) {
+											  			// TODO Auto-generated catch block
+											  			e.printStackTrace();
+											  		}
+											   	   	return null;
+											  	}).
+											  	collect(Collectors.toList());
+		
 		return felinesTmpClone;
 	}
 	
 	@Override
 	public List<FelineInterface> findByRace(String race){
-		List<FelineInterface> felinesTmpClone = new ArrayList<FelineInterface>();
-		felines.forEach(f -> {if(f.getRace().equals(race))
-			try {
-				felinesTmpClone.add(((FelineInterface)f).clone());
-			} catch (CloneNotSupportedException e) {
-				e.printStackTrace();
-			}});
+//		List<FelineInterface> felinesTmpClone = new ArrayList<FelineInterface>();
+//		felines.forEach(f -> {if(f.getRace().equals(race))
+//			try {
+//				felinesTmpClone.add(((FelineInterface)f).clone());
+//			} catch (CloneNotSupportedException e) {
+//				e.printStackTrace();
+//			}});
+		
+		List<FelineInterface> felinesTmpClone = felines.stream().
+			  									filter(f -> f.getRace().equals(race)).
+			  									map(f -> {
+			  										try {
+			  											return f.clone();
+			  										} catch (CloneNotSupportedException e) {
+			  											// TODO Auto-generated catch block
+			  											e.printStackTrace();
+			  										}
+			  										return null;
+			  									}).
+			  									collect(Collectors.toList());
+
+		
 		return felinesTmpClone;
 	}
 }
