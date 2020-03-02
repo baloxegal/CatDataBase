@@ -11,9 +11,13 @@ public class TestApplication {
 	public static void main(String[] args) {
 		FelineRepositoryInterface fr = new FelineRepository();
 		((FelineRepository)fr).generate();
-		for(FelineInterface f : fr.findAll()){
-			System.out.println(f);
-		}
+
+//		for(FelineInterface f : fr.findAll()){
+//			System.out.println(f);
+//		}
+		
+		fr.findAll().forEach(f -> System.out.println(f));
+		
 		System.out.println();
 		
 		System.out.println(fr.findById(2) + "\n");
