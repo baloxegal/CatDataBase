@@ -17,9 +17,12 @@ public class Cat implements FelineInterface, Cloneable {
 		setYear(year);
 			
 	}
+	
+//Constructor of copy
 //	public Cat(Cat cat) {
 //		this(cat.getId(), cat.getName(), cat.getRace(), cat.getYear());
 //	}
+	
 	public String toString() {
 		return "ID: " + id + ", Cat's name: " + name + ", Cat's race: " + race + ", Cat's age: " + year;
 	}
